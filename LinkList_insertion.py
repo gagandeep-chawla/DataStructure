@@ -27,6 +27,20 @@ class LinkedList:
         pre_node = self.head
         self.head = new_node
         self.head.next = pre_node
+    
+        
+    def insert_between_node(self,old_node,new_node):
+        new_node = Node(new_node)
+        node = self.head
+        while True:
+            if node.next.data == old_node:
+                new_node.next = node.next
+                node.next = new_node
+                break
+            elif node.next is None:
+                break
+            else:
+                node = node.next
 
     def print_list(self):
         llist = self.head
@@ -47,6 +61,10 @@ def main():
     ll.print_list()
     ll.append('e')
     ll.print_list()
-
+    ll.insert_between_node('a', 'd')
+    ll.print_list()
+    ll.insert_between_node('d', 'g')
+    ll.print_list()
+    
 if __name__ == "__main__":
     main()
