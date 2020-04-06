@@ -50,6 +50,23 @@ class LinkedList:
                 break
             llist = llist.next
 
+    def delete_node(self, node):
+        cur_node = self.head
+        if self.head and self.head.data == node:
+            self.head = cur_node.next
+            cur_node = None
+        while True:
+            try:
+                if cur_node.next == None:
+                    break
+                elif cur_node.next.data == node:
+                    cur_node.next = cur_node.next.next
+                    break
+                else:
+                    cur_node = cur_node.next
+            except AttributeError:
+                break
+        return
 
 def main():
     ll = LinkedList()
@@ -64,6 +81,10 @@ def main():
     ll.insert_between_node('a', 'd')
     ll.print_list()
     ll.insert_between_node('d', 'g')
+    ll.print_list()
+    ll.append('f')
+    ll.print_list()
+    ll.delete_node('f')
     ll.print_list()
     
 if __name__ == "__main__":
