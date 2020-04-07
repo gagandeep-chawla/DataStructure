@@ -68,6 +68,16 @@ class LinkedList:
                 break
         return
 
+    def __len__(self):
+        count = 0
+        cur_node= self.head
+        while cur_node:
+            count+=1
+            if cur_node.next == None:
+                break
+            cur_node = cur_node.next
+        return count
+    
 def main():
     ll = LinkedList()
     ll.append('a')
@@ -86,6 +96,7 @@ def main():
     ll.print_list()
     ll.delete_node('f')
     ll.print_list()
+    print(len(ll))
     
 if __name__ == "__main__":
     main()
