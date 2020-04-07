@@ -10,6 +10,16 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    def __len__(self):
+        count = 0
+        cur_node = self.head
+        while cur_node:
+            count+=1
+            if cur_node.next == None:
+                break
+            cur_node = cur_node.next
+        return count
+    
     def append(self, data):
         new_node = Node(data)
         if self.head is None:
@@ -67,16 +77,25 @@ class LinkedList:
             except AttributeError:
                 break
         return
-
-    def __len__(self):
-        count = 0
-        cur_node= self.head
-        while cur_node:
-            count+=1
-            if cur_node.next == None:
-                break
-            cur_node = cur_node.next
-        return count
+    
+    def delete_nodes_by_position(self, num):
+        if num is 0:
+            cur_node = self.head
+            self.head = cur_node.next
+            cur_node = None
+        
+        if num < len(self):
+            count = 0
+            cur_node = self.head
+            while True:
+                if (count+1) == num:
+                    cur_node.next = cur_node.next.next
+                    break
+                if cur_node.next == None:
+                    break
+                cur_node = cur_node.next
+                count += 1
+        return
     
 def main():
     ll = LinkedList()
@@ -97,6 +116,13 @@ def main():
     ll.delete_node('f')
     ll.print_list()
     print(len(ll))
-    
+    ll.delete_nodes_by_position(2)
+    ll.print_list()
+    ll.delete_nodes_by_position(2)
+    ll.print_list()
+    ll.delete_nodes_by_position(1)
+    ll.print_list()
+
+
 if __name__ == "__main__":
     main()
