@@ -96,6 +96,29 @@ class LinkedList:
                 cur_node = cur_node.next
                 count += 1
         return
+
+    def valid_nodes_check(self,node1,node2):
+        if (node1 == node2) or (self.head is None) or (len(self)<1):
+            return False
+        return True
+
+    def swap_node(self, node1, node2):
+        if self.valid_nodes_check(node1,node2):
+            cur_node = self.head
+        is_node1_matched,is_node2_matched = (False,False)
+        while True:
+            if cur_node.data in (node1,node2):
+                if cur_node.data == node1:
+                    cur_node.data = node2
+                    is_node1_matched = True
+                if cur_node.data == node2:
+                    cur_node.data = node1
+                    is_node2_matched = True
+            if (is_node2_matched==is_node1_matched==True) or cur_node.next is None:
+                break
+            cur_node = cur_node.next
+        return
+
     
 def main():
     ll = LinkedList()
@@ -122,7 +145,8 @@ def main():
     ll.print_list()
     ll.delete_nodes_by_position(1)
     ll.print_list()
-
+    ll.swap_node('a', 'c')
+    ll.print_list()
 
 if __name__ == "__main__":
     main()
